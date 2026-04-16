@@ -4,6 +4,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 @AGENTS.md
 
+## REGLA OBLIGATORIA — Consultar /docs antes de generar código
+
+**Antes de escribir cualquier línea de código**, Claude Code DEBE leer y aplicar la documentación relevante del directorio `/docs`. Esta regla no tiene excepciones.
+
+Pasos obligatorios:
+1. Identificar qué archivos de `/docs` aplican a la tarea (UI, base de datos, autenticación, etc.).
+2. Leer esos archivos con la herramienta Read.
+3. Generar código que cumpla estrictamente con lo especificado en esa documentación.
+4. Archivos Relevantes:
+    * /docs/ui.md
+
+Documentación disponible:
+
+| Archivo | Aplica cuando… |
+|---|---|
+| `docs/ui.md` | Se crea o modifica cualquier componente visual |
+
 ## Commands
 
 ```bash
@@ -21,9 +38,17 @@ npx eslint .     # Lint (next lint was removed in v16 — use eslint directly)
 - **React 19.2.4** — Server Components by default; add `'use client'` only when needed
 - **TypeScript 5** — strict mode, path alias `@/*` → project root
 - **Tailwind CSS v4** — configured via `@tailwindcss/postcss`, no `tailwind.config.*` needed
+- @clerk/nextjs ^7.0.7 — autenticación
+- @neondatabase/serverless ^1.0.2 + drizzle-orm ^0.45.2 — base de datos
+- drizzle-kit ^0.31.10 — migraciones
+- shadcn/ui (@base-ui/react, class-variance-authority, clsx, tailwind-merge)
+
+## Base de datos
+- Proveedor: Neon
+- ORM: Drizzle
+- Schema en: /db/schema.ts (o donde esté)
 
 ## Architecture
-
 All routes live under `app/`. Pages are Server Components unless marked `'use client'`. The root layout (`app/layout.tsx`) wraps all routes and sets fonts/metadata.
 
 Route file conventions:
