@@ -14,12 +14,14 @@ Pasos obligatorios:
 3. Generar código que cumpla estrictamente con lo especificado en esa documentación.
 4. Archivos Relevantes:
     * /docs/ui.md
+    * /docs/data-fetching.md
 
 Documentación disponible:
 
 | Archivo | Aplica cuando… |
 |---|---|
 | `docs/ui.md` | Se crea o modifica cualquier componente visual |
+| `docs/data-fetching.md` | Se obtienen datos, se crean helpers en `/data`, o se accede a la base de datos |
 
 ## Commands
 

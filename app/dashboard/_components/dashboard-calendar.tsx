@@ -6,46 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { formatDate } from "@/lib/format-date"
 import { Dumbbell } from "lucide-react"
-
-type Workout = {
-  id: string
-  name: string | null
-  date: Date
-  notes: string | null
-  exerciseCount: number
-}
-
-// Datos de ejemplo para la UI
-const MOCK_WORKOUTS: Workout[] = [
-  {
-    id: "1",
-    name: "Empuje — Pecho y Tríceps",
-    date: new Date(),
-    notes: "Buen desempeño en press banca",
-    exerciseCount: 5,
-  },
-  {
-    id: "2",
-    name: "Jalón — Espalda y Bíceps",
-    date: new Date(),
-    notes: null,
-    exerciseCount: 4,
-  },
-  {
-    id: "3",
-    name: "Pierna",
-    date: new Date(new Date().setDate(new Date().getDate() - 2)),
-    notes: "Sentadilla con PR",
-    exerciseCount: 6,
-  },
-  {
-    id: "4",
-    name: "Cardio",
-    date: new Date(new Date().setDate(new Date().getDate() - 5)),
-    notes: null,
-    exerciseCount: 1,
-  },
-]
+import type { Workout } from "@/data/workouts"
 
 function isSameDay(a: Date, b: Date): boolean {
   return (
@@ -55,14 +16,14 @@ function isSameDay(a: Date, b: Date): boolean {
   )
 }
 
-export function DashboardCalendar() {
+export function DashboardCalendar({ workouts }: { workouts: Workout[] }) {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
 
-  const workoutsForSelectedDate = MOCK_WORKOUTS.filter((w) =>
+  const workoutsForSelectedDate = workouts.filter((w) =>
     isSameDay(w.date, selectedDate)
   )
 
-  const datesWithWorkouts = MOCK_WORKOUTS.map((w) => w.date)
+  const datesWithWorkouts = workouts.map((w) => w.date)
 
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-[auto_1fr]">
